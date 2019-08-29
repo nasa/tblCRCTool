@@ -42,6 +42,8 @@
 #include <stdio.h>
 #include <fcntl.h>
 #include <string.h>
+#include <stdlib.h>
+#include <unistd.h>
 
 
 #define CFE_ES_CRC_8   1  /**< \brief CRC ( 8 bit additive - returns 32 bit total) (Currently not implemented) */
@@ -177,7 +179,14 @@ int main( int argc, char **argv )
 		if (readSize != 100) done=1;	
 	}
 	/* print the size/CRC results */
-     printf("\nTable File Name:            %s\nTable Size:                 %d Bytes\nExpected TS Validation CRC: 0x%08X\n\n", argv[1], fileSize, fileCRC);
+    printf("\nTable File Name:            %s\nTable Size:                 %d Bytes\nExpected TS Validation CRC: 0x%08X\n\n", argv[1], fileSize, fileCRC);
 
-     return(fileCRC);
+    /* Close file and check*/
+    if( close(fd) != 0 )
+    {
+        printf("\nerror: Cannot close file!\n");
+        exit(0);
+    }
+
+    return(fileCRC);
 }
