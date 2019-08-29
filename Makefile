@@ -19,5 +19,5 @@ all:
 	gcc $(INCLUDE_PATH) -g -o cfe_ts_crc cfe_ts_crc.c
 
 clean:
-	rm cfe_ts_crc
+	rm -f cfe_ts_crc
 
