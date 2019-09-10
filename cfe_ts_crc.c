@@ -44,12 +44,8 @@
 #include <string.h>
 #include <stdlib.h>
 #include <unistd.h>
-
-
-#define CFE_ES_CRC_8   1  /**< \brief CRC ( 8 bit additive - returns 32 bit total) (Currently not implemented) */
-#define CFE_ES_CRC_16  2  /**< \brief CRC (16 bit additive - returns 32 bit total) */
-#define CFE_ES_CRC_32  3  /**< \brief CRC (32 bit additive - returns 32 bit total) (Currently not implemented) */
-#define CFE_ES_DEFAULT_CRC  CFE_ES_CRC_16  /**< \brief mission specific CRC type  */
+#include "cfe_tbl_filedef.h"
+#include "cfe_fs.h"
 
 typedef unsigned char uint8;
 typedef unsigned short uint16;
@@ -67,7 +63,7 @@ typedef signed int int32;
 ** Purpose:  Perform a CRC calculation on a range of memory.
 **
 */
-uint32 CFE_ES_CalculateCRC(void *DataPtr, uint32 DataLength, uint32 InputCRC, uint32 TypeCRC)
+uint32 CFE_ES_CalculateCRC(const void *DataPtr, uint32 DataLength, uint32 InputCRC, uint32 TypeCRC)
 {
     int32  i;
     int16  Index;
@@ -158,8 +154,10 @@ int main( int argc, char **argv )
     	printf("\nUsage: cfe_ts_crc [filename]\n");
         exit(0);
     }
-    /* Set to skip the header (116 bytes) */
-	skipSize = 116;
+
+    /* Set to skip the CFE Table Headers */
+	skipSize = sizeof(CFE_TBL_File_Hdr_t) + sizeof(CFE_FS_Header_t);
+
 	/* open the input file if possible */
 	fd = open( argv[1], O_RDONLY );
 	if ( fd < 0 )
