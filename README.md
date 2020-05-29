@@ -6,11 +6,19 @@ This lab application is a ground utility to generate binary table CRCs for cFS. 
 
 ## Version Notes
 
-- **1.1.0 OFFICIAL RELEASE**:
-  - Minor updates (see https://github.com/nasa/tblCRCTool/pull/12)
-  - Released as part of cFE 6.7.0, Apache 2.0
-- **1.0.0a OFFICIAL RELEASE**:
-  - Released as part of cFE 6.6.0a, Apache 2.0
+### Development Build: 1.1.1
+
+- Apply Code Style
+- See <https://github.com/nasa/tblCRCTool/pull/18>
+
+### **_OFFICIAL RELEASE: 1.1.0_**
+
+- Minor updates (see https://github.com/nasa/tblCRCTool/pull/12)
+- Released as part of cFE 6.7.0, Apache 2.0
+
+### **_OFFICIAL RELEASE: 1.0.0a_**
+
+- Released as part of cFE 6.6.0a, Apache 2.0
 
 NOTE - there are other parameter set management schemes used with the cFS (JSON, csv, etc) which may be more applicable for modern missions.  Contact the community as detailed below for more information.
 
