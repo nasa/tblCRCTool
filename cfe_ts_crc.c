@@ -45,6 +45,8 @@
 #include <stdlib.h>
 #include <unistd.h>
 
+#include "cfe_ts_crc_version.h"
+
 #define CFE_ES_CRC_8       1 /**< \brief CRC ( 8 bit additive - returns 32 bit total) (Currently not implemented) */
 #define CFE_ES_CRC_16      2 /**< \brief CRC (16 bit additive - returns 32 bit total) */
 #define CFE_ES_CRC_32      3 /**< \brief CRC (32 bit additive - returns 32 bit total) (Currently not implemented) */
@@ -135,7 +137,7 @@ int main(int argc, char **argv)
     /* check for valid input */
     if ((argc != 2) || (strncmp(argv[1], "-help", 100) == 0))
     {
-        printf("\ncFE TS CRC calculator for LRO files.");
+        printf("%s\n", CFE_TS_CRC_VERSION_STRING);
         printf("\nUsage: cfe_ts_crc [filename]\n");
         exit(0);
     }
