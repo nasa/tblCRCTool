@@ -47,17 +47,17 @@
 
 #include "cfe_ts_crc_version.h"
 
+/* These headers are needed for CFE_FS_Header_t and CFE_TBL_File_Hdr_t, respectively.
+ * This uses the OSAL definition of fixed-width types, even thought this tool
+ * is not using OSAL itself. */
+#include "common_types.h"
+#include "cfe_fs_extern_typedefs.h"
+#include "cfe_tbl_extern_typedefs.h"
+
 #define CFE_ES_CRC_8       1 /**< \brief CRC ( 8 bit additive - returns 32 bit total) (Currently not implemented) */
 #define CFE_ES_CRC_16      2 /**< \brief CRC (16 bit additive - returns 32 bit total) */
 #define CFE_ES_CRC_32      3 /**< \brief CRC (32 bit additive - returns 32 bit total) (Currently not implemented) */
 #define CFE_ES_DEFAULT_CRC CFE_ES_CRC_16 /**< \brief mission specific CRC type  */
-
-typedef unsigned char  uint8;
-typedef unsigned short uint16;
-typedef unsigned int   uint32;
-typedef signed char    int8;
-typedef signed short   int16;
-typedef signed int     int32;
 
 /*
 **             Function Prologue
@@ -142,7 +142,8 @@ int main(int argc, char **argv)
         exit(0);
     }
     /* Set to skip the header (116 bytes) */
-    skipSize = 116;
+    skipSize = sizeof(CFE_FS_Header_t) + sizeof(CFE_TBL_File_Hdr_t);
+
     /* open the input file if possible */
     fd = open(argv[1], O_RDONLY);
     if (fd < 0)
