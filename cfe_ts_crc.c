@@ -133,7 +133,7 @@ int main(int argc, char **argv)
     char   buffer[100];
 
     /* check for valid input */
-    if ((argc != 2) || (strncmp(argv[1], "-help", 100) == 0))
+    if ((argc != 2) || (strncmp(argv[1], "--help", 100) == 0))
     {
         printf("\ncFE TS CRC calculator for LRO files.");
         printf("\nUsage: cfe_ts_crc [filename]\n");
