@@ -33,14 +33,15 @@
  */
 #define CFE_TS_CRC_BUILD_NUMBER 8 /*!< @brief Number of commits since baseline */
 #define CFE_TS_CRC_BUILD_BASELINE \
-    "v1.1.0+dev" /*!< @brief Development Build: git tag that is the base for the current */
+    "v1.2.0+dev" /*!< @brief Development Build: git tag that is the base for the current */
 
 /*
  * Version Macro Definitions
  */
 #define CFE_TS_CRC_MAJOR_VERSION 1 /*!< @brief ONLY APPLY for OFFICIAL releases. Major version number. */
 #define CFE_TS_CRC_MINOR_VERSION 1 /*!< @brief ONLY APPLY for OFFICIAL releases. Minor version number. */
-#define CFE_TS_CRC_REVISION      0 /*!< @brief ONLY APPLY for OFFICIAL releases. Revision version number. */
+#define CFE_TS_CRC_REVISION      99 /*!< @brief ONLY APPLY for OFFICIAL releases. Revision version number. A value of "99" indicates an unreleased development version.  */
+
 #define CFE_TS_CRC_MISSION_REV   0 /*!< @brief ONLY USED by MISSION Implementations. Mission revision */
 
 /*
