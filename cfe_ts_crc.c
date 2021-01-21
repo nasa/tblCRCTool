@@ -54,20 +54,15 @@
 #include "cfe_fs_extern_typedefs.h"
 #include "cfe_tbl_extern_typedefs.h"
 
-#define CFE_ES_CRC_8       1 /**< \brief CRC ( 8 bit additive - returns 32 bit total) (Currently not implemented) */
-#define CFE_ES_CRC_16      2 /**< \brief CRC (16 bit additive - returns 32 bit total) */
-#define CFE_ES_CRC_32      3 /**< \brief CRC (32 bit additive - returns 32 bit total) (Currently not implemented) */
-#define CFE_ES_DEFAULT_CRC CFE_ES_CRC_16 /**< \brief mission specific CRC type  */
-
 /*
 **             Function Prologue
 **
-** Function: CFE_ES_CalculateCRC  (taken directly from lro-cfe-4.2.1 delivery - 2/4/09)
+** Function: CalculateCRC  (originated from lro-cfe-4.2.1 delivery - 2/4/09)
 **
 ** Purpose:  Perform a CRC calculation on a range of memory.
 **
 */
-uint32 CFE_ES_CalculateCRC(void *DataPtr, uint32 DataLength, uint32 InputCRC, uint32 TypeCRC)
+uint32 CalculateCRC(void *DataPtr, uint32 DataLength, uint32 InputCRC)
 {
     int32  i;
     int16  Index;
@@ -96,33 +91,18 @@ uint32 CFE_ES_CalculateCRC(void *DataPtr, uint32 DataLength, uint32 InputCRC, ui
         0x4C80, 0x8C41, 0x4400, 0x84C1, 0x8581, 0x4540, 0x8701, 0x47C0, 0x4680, 0x8641, 0x8201, 0x42C0, 0x4380, 0x8341,
         0x4100, 0x81C1, 0x8081, 0x4040};
 
-    switch (TypeCRC)
+    Crc    = (int16)(0xFFFF & InputCRC);
+    BufPtr = (uint8 *)DataPtr;
+
+    for (i = 0; i < DataLength; i++, BufPtr++)
     {
-            /*       case CFE_ES_CRC_32:                                                    */
-            /*            CFE_ES_WriteToSysLog("CFE ES Calculate CRC32 not Implemented\n"); */
-            /*            break;                                                            */
-
-        case CFE_ES_CRC_16:
-            Crc    = (int16)(0xFFFF & InputCRC);
-            BufPtr = (uint8 *)DataPtr;
-
-            for (i = 0; i < DataLength; i++, BufPtr++)
-            {
-                Index = ((Crc ^ *BufPtr) & 0x00FF);
-                Crc   = ((Crc >> 8) & 0x00FF) ^ CrcTable[Index];
-            }
-            break;
-
-            /*       case CFE_ES_CRC_8:                                                    */
-            /*            CFE_ES_WriteToSysLog("CFE ES Calculate CRC8 not Implemented\n"); */
-            /*            break;                                                           */
-
-        default:
-            break;
+        Index = ((Crc ^ *BufPtr) & 0x00FF);
+        Crc   = ((Crc >> 8) & 0x00FF) ^ CrcTable[Index];
     }
+
     return (Crc);
 
-} /* End of CFE_ES_CalculateCRC() */
+}
 
 int main(int argc, char **argv)
 {
@@ -158,7 +138,7 @@ int main(int argc, char **argv)
     while (done == 0)
     {
         readSize = read(fd, buffer, 100);
-        fileCRC  = CFE_ES_CalculateCRC(buffer, readSize, fileCRC, CFE_ES_CRC_16);
+        fileCRC  = CalculateCRC(buffer, readSize, fileCRC);
         fileSize += readSize;
         if (readSize != 100)
             done = 1;
