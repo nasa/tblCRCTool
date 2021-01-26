@@ -16,29 +16,25 @@
 **      WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 **      See the License for the specific language governing permissions and
 **      limitations under the License.
-**
-**  lro_ts_crc
-**
-**  This program calculates the CRC of a given file using the same
-**  algorithm as the LRO spacecraft cFE Table Services flight software uses.
-**
-**  Inputs: One string containing the filename of the file to CRC.
-**
-**
-**  Outputs: Prints to the terminal the filename, size, and CRC.
-**           Returns the CRC.
-**
-**  Author: Mike Blau, GSFC Code 582
-**
-**  Date: 1/28/08
-**
-**  Modified 4/24/08  MDB  Added option to skip a specified number of header bytes
-**  Modified 2/04/09  BDT  Modified to compute cFE table services CS
-**  Modified 4/01/09  STS  Modified to always skip header (116 bytes)
-**  Modified 4/01/09  STS  Removed option to skip a specified number of header bytes
-**  Modified 6/15/12  WFM  Replaced the CRC Table with the table used in
-**                         CFE_ES_CalculateCRC
 */
+
+/*
+ *  This program calculates the CRC-16/ARC of a given table file.
+ *
+ *  Algorithm:
+ *    - Name: CRC-16/ARC
+ *    - Polynomial: 0x8005
+ *    - Initialization: 0x0000
+ *    - Reflect Input/Output: true
+ *    - XorOut: 0x0000
+ *
+ *  Inputs: One string containing the filename of the table file to CRC.
+ *
+ *  Outputs: Prints to the terminal the filename, size, and CRC.
+ *           Returns the CRC.
+ *
+ *  Author: Mike Blau, GSFC Code 582
+ */
 #include <stdio.h>
 #include <fcntl.h>
 #include <string.h>
@@ -49,7 +45,8 @@
 
 /* These headers are needed for CFE_FS_Header_t and CFE_TBL_File_Hdr_t, respectively.
  * This uses the OSAL definition of fixed-width types, even thought this tool
- * is not using OSAL itself. */
+ * is not using OSAL itself.
+ */
 #include "common_types.h"
 #include "cfe_fs_extern_typedefs.h"
 #include "cfe_tbl_extern_typedefs.h"
