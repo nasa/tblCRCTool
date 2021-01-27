@@ -6,12 +6,18 @@ This lab application is a ground utility to generate binary table CRCs for cFS. 
 
 ## Version Notes
 
+### Development Build: 1.2.0-rc1+dev12
+
+- Documentation: Add `Security.md` with instructions on reporting vulnerabilities
+- Removes unimplemented CRC cases to eliminate static analysis warnings
+- See <https://github.com/nasa/tblCRCTool/pull/29>
+
 ### Development Build: 1.2.0-rc1+dev3
 
 - Use `sizeof()` instead of a hard coded value for the table file header size to keep this tool in sync if the size of the cFE file or table header should ever change.
 - Update version baseline to v1.2.0-rc1
 - Set REVISION number to 99 to indicate development version
-See <https://github.com/nasa/tblCRCTool/pull/25>
+- See <https://github.com/nasa/tblCRCTool/pull/25>
 
 ### Development Build: 1.1.0+dev7
 
