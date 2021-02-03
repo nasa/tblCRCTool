@@ -1,3 +1,6 @@
+![Static Analysis](https://github.com/nasa/tblCRCTool/workflows/Static%20Analysis/badge.svg)
+![Format Check](https://github.com/nasa/tblCRCTool/workflows/Format%20Check/badge.svg)
+
 # Core Flight System : Framework : Tool : Table CRC Generator
 
 This repository contains NASA's Table CRC Generator Tool (tblCRCTool), which is a framework component of the Core Flight System.
