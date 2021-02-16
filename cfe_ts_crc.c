@@ -98,7 +98,6 @@ uint32 CalculateCRC(void *DataPtr, uint32 DataLength, uint32 InputCRC)
     }
 
     return (Crc);
-
 }
 
 int main(int argc, char **argv)

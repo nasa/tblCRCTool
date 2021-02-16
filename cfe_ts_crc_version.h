@@ -31,7 +31,7 @@
 /*
  * Development Build Macro Definitions
  */
-#define CFE_TS_CRC_BUILD_NUMBER 12 /*!< @brief Number of commits since baseline */
+#define CFE_TS_CRC_BUILD_NUMBER 19 /*!< @brief Number of commits since baseline */
 #define CFE_TS_CRC_BUILD_BASELINE \
     "v1.2.0+dev" /*!< @brief Development Build: git tag that is the base for the current */
 
@@ -40,9 +40,11 @@
  */
 #define CFE_TS_CRC_MAJOR_VERSION 1 /*!< @brief ONLY APPLY for OFFICIAL releases. Major version number. */
 #define CFE_TS_CRC_MINOR_VERSION 1 /*!< @brief ONLY APPLY for OFFICIAL releases. Minor version number. */
-#define CFE_TS_CRC_REVISION      99 /*!< @brief ONLY APPLY for OFFICIAL releases. Revision version number. A value of "99" indicates an unreleased development version.  */
+#define CFE_TS_CRC_REVISION                                                                                           \
+    99 /*!< @brief ONLY APPLY for OFFICIAL releases. Revision version number. A value of "99" indicates an unreleased \
+          development version.  */
 
-#define CFE_TS_CRC_MISSION_REV   0 /*!< @brief ONLY USED by MISSION Implementations. Mission revision */
+#define CFE_TS_CRC_MISSION_REV 0 /*!< @brief ONLY USED by MISSION Implementations. Mission revision */
 
 /*
  * Tools to construct version string
@@ -61,10 +63,10 @@
  * @details Reports the current development build's baseline, number, and name. Also includes a note about the latest
  * official version. @n See @ref cfsversions for format differences between development and release versions.
  */
-#define CFE_TS_CRC_VERSION_STRING                                               \
-    " cFE TS CRC calculator (tblCRCtool) \n"                                    \
-    " DEVELOPMENT BUILD \n"                                                     \
-    " " CFE_TS_CRC_VERSION " \n"                                                \
-    " Last Offical Release: tblCRCtool v3.1.0"     /* For full support please use official release version */
+#define CFE_TS_CRC_VERSION_STRING            \
+    " cFE TS CRC calculator (tblCRCtool) \n" \
+    " DEVELOPMENT BUILD \n"                  \
+    " " CFE_TS_CRC_VERSION " \n"             \
+    " Last Offical Release: tblCRCtool v3.1.0" /* For full support please use official release version */
 
 #endif /* CFE_TS_CRC_VERSION_H */

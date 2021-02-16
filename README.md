@@ -9,6 +9,13 @@ This lab application is a ground utility to generate binary table CRCs for cFS. 
 
 ## Version Notes
 
+### Development Build: 1.2.0-rc1+dev19
+
+- Changes CLI "help" option to use two dashes: `--help`
+- Adds static analysis and format check to continuous integration workflow. Adds workflow status badges to ReadMe.
+- Adds CodeQL Analysis to continuous integration workflow.
+- See <https://github.com/nasa/tblCRCTool/pull/35>
+
 ### Development Build: 1.2.0-rc1+dev12
 
 - Documentation: Add `Security.md` with instructions on reporting vulnerabilities
