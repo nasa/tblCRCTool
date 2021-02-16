@@ -98,7 +98,6 @@ uint32 CalculateCRC(void *DataPtr, uint32 DataLength, uint32 InputCRC)
     }
 
     return (Crc);
-
 }
 
 int main(int argc, char **argv)
@@ -112,7 +111,7 @@ int main(int argc, char **argv)
     char   buffer[100];
 
     /* check for valid input */
-    if ((argc != 2) || (strncmp(argv[1], "-help", 100) == 0))
+    if ((argc != 2) || (strncmp(argv[1], "--help", 100) == 0))
     {
         printf("%s\n", CFE_TS_CRC_VERSION_STRING);
         printf("\nUsage: cfe_ts_crc [filename]\n");
