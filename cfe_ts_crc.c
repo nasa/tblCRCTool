@@ -102,13 +102,14 @@ uint32 CalculateCRC(void *DataPtr, uint32 DataLength, uint32 InputCRC)
 
 int main(int argc, char **argv)
 {
-    int    readSize;
-    int    skipSize = 0;
-    int    fileSize = 0;
-    uint32 fileCRC  = 0;
-    int    fd;
-    int    done = 0;
-    char   buffer[100];
+    int     readSize;
+    int     skipSize = 0;
+    int     fileSize = 0;
+    uint32  fileCRC  = 0;
+    int     fd;
+    int     done = 0;
+    char    buffer[100];
+    __off_t offsetReturn = 0;
 
     /* check for valid input */
     if ((argc != 2) || (strncmp(argv[1], "--help", 100) == 0))
@@ -128,7 +129,13 @@ int main(int argc, char **argv)
         exit(0);
     }
     /* seek past the number of bytes requested */
-    lseek(fd, skipSize, SEEK_SET);
+    offsetReturn = lseek(fd, skipSize, SEEK_SET);
+    if (offsetReturn != skipSize)
+    {
+        printf("\ncfe_ts_crc error: lseek failed!\n");
+        printf("%s\n", strerror(offsetReturn));
+        exit(0);
+    }
 
     /* read the input file 100 bytes at a time */
     while (done == 0)
