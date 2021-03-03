@@ -134,7 +134,12 @@ int main(int argc, char **argv)
     while (done == 0)
     {
         readSize = read(fd, buffer, 100);
-        fileCRC  = CalculateCRC(buffer, readSize, fileCRC);
+        if (readSize < 0)
+        {
+            printf("\ncfe_ts_crc error: file read failed!\n");
+            exit(1);
+        }
+        fileCRC = CalculateCRC(buffer, (uint32)readSize, fileCRC);
         fileSize += readSize;
         if (readSize != 100)
             done = 1;
