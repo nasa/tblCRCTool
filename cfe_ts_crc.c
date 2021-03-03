@@ -102,21 +102,21 @@ uint32 CalculateCRC(void *DataPtr, uint32 DataLength, uint32 InputCRC)
 
 int main(int argc, char **argv)
 {
-    int     readSize;
-    int     skipSize = 0;
-    int     fileSize = 0;
+    ssize_t readSize;
+    off_t   skipSize = 0;
+    ssize_t fileSize = 0;
     uint32  fileCRC  = 0;
     int     fd;
     int     done = 0;
     char    buffer[100];
-    __off_t offsetReturn = 0;
+    off_t   offsetReturn = 0;
 
     /* check for valid input */
     if ((argc != 2) || (strncmp(argv[1], "--help", 100) == 0))
     {
         printf("%s\n", CFE_TS_CRC_VERSION_STRING);
         printf("\nUsage: cfe_ts_crc [filename]\n");
-        exit(0);
+        exit(1);
     }
     /* Set to skip the header (116 bytes) */
     skipSize = sizeof(CFE_FS_Header_t) + sizeof(CFE_TBL_File_Hdr_t);
@@ -126,7 +126,7 @@ int main(int argc, char **argv)
     if (fd < 0)
     {
         printf("\ncfe_ts_crc error: can't open input file!\n");
-        exit(0);
+        exit(1);
     }
     /* seek past the number of bytes requested */
     offsetReturn = lseek(fd, skipSize, SEEK_SET);
@@ -134,7 +134,7 @@ int main(int argc, char **argv)
     {
         printf("\ncfe_ts_crc error: lseek failed!\n");
         printf("%s\n", strerror(offsetReturn));
-        exit(0);
+        exit(1);
     }
 
     /* read the input file 100 bytes at a time */
@@ -147,7 +147,7 @@ int main(int argc, char **argv)
             done = 1;
     }
     /* print the size/CRC results */
-    printf("\nTable File Name:            %s\nTable Size:                 %d Bytes\nExpected TS Validation CRC: "
+    printf("\nTable File Name:            %s\nTable Size:                 %ld Bytes\nExpected TS Validation CRC: "
            "0x%08X\n\n",
            argv[1], fileSize, fileCRC);
 
@@ -155,7 +155,7 @@ int main(int argc, char **argv)
     if (close(fd) != 0)
     {
         printf("\nerror: Cannot close file!\n");
-        exit(0);
+        exit(1);
     }
 
     return (fileCRC);
