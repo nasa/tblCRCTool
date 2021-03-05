@@ -31,7 +31,7 @@
  *  Inputs: One string containing the filename of the table file to CRC.
  *
  *  Outputs: Prints to the terminal the filename, size, and CRC.
- *           Returns the CRC.
+ *           Returns 0 if successful.
  *
  *  Author: Mike Blau, GSFC Code 582
  */
@@ -40,6 +40,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <errno.h>
 
 #include "cfe_ts_crc_version.h"
 
@@ -102,20 +103,20 @@ uint32 CalculateCRC(void *DataPtr, uint32 DataLength, uint32 InputCRC)
 
 int main(int argc, char **argv)
 {
-    int    readSize;
-    int    skipSize = 0;
-    int    fileSize = 0;
-    uint32 fileCRC  = 0;
-    int    fd;
-    int    done = 0;
-    char   buffer[100];
+    ssize_t readSize;
+    off_t   skipSize = 0;
+    ssize_t fileSize = 0;
+    uint32  fileCRC  = 0;
+    int     fd;
+    char    buffer[100];
+    off_t   offsetReturn = 0;
 
     /* check for valid input */
     if ((argc != 2) || (strncmp(argv[1], "--help", 100) == 0))
     {
         printf("%s\n", CFE_TS_CRC_VERSION_STRING);
         printf("\nUsage: cfe_ts_crc [filename]\n");
-        exit(0);
+        exit(1);
     }
     /* Set to skip the header (116 bytes) */
     skipSize = sizeof(CFE_FS_Header_t) + sizeof(CFE_TBL_File_Hdr_t);
@@ -125,22 +126,34 @@ int main(int argc, char **argv)
     if (fd < 0)
     {
         printf("\ncfe_ts_crc error: can't open input file!\n");
-        exit(0);
+        perror(argv[1]);
+        exit(1);
     }
     /* seek past the number of bytes requested */
-    lseek(fd, skipSize, SEEK_SET);
+    offsetReturn = lseek(fd, skipSize, SEEK_SET);
+    if (offsetReturn != skipSize)
+    {
+        printf("\ncfe_ts_crc error: lseek failed!\n");
+        printf("%s\n", strerror(errno));
+        exit(1);
+    }
 
     /* read the input file 100 bytes at a time */
-    while (done == 0)
+    do
     {
-        readSize = read(fd, buffer, 100);
-        fileCRC  = CalculateCRC(buffer, readSize, fileCRC);
+        readSize = read(fd, buffer, sizeof(buffer));
+        if (readSize < 0)
+        {
+            printf("\ncfe_ts_crc error: file read failed!\n");
+            printf("%s\n", strerror(errno));
+            exit(1);
+        }
+        fileCRC = CalculateCRC(buffer, readSize, fileCRC);
         fileSize += readSize;
-        if (readSize != 100)
-            done = 1;
-    }
+    } while (readSize > 0);
+
     /* print the size/CRC results */
-    printf("\nTable File Name:            %s\nTable Size:                 %d Bytes\nExpected TS Validation CRC: "
+    printf("\nTable File Name:            %s\nTable Size:                 %ld Bytes\nExpected TS Validation CRC: "
            "0x%08X\n\n",
            argv[1], fileSize, fileCRC);
 
@@ -148,8 +161,9 @@ int main(int argc, char **argv)
     if (close(fd) != 0)
     {
         printf("\nerror: Cannot close file!\n");
-        exit(0);
+        printf("%s\n", strerror(errno));
+        exit(1);
     }
 
-    return (fileCRC);
+    return (0);
 }
