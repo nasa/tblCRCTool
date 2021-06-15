@@ -154,8 +154,8 @@ int main(int argc, char **argv)
 
     /* print the size/CRC results */
     printf("\nTable File Name:            %s\nTable Size:                 %ld Bytes\nExpected TS Validation CRC: "
-           "0x%08X\n\n",
-           argv[1], fileSize, fileCRC);
+           "0x%08lX\n\n",
+           argv[1], (long)fileSize, (unsigned long)fileCRC);
 
     /* Close file and check*/
     if (close(fd) != 0)
