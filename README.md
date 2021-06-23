@@ -9,10 +9,18 @@ This lab application is a ground utility to generate binary table CRCs for cFS. 
 
 ## Version Notes
 
+### Development Build: 1.2.0-rc1+dev33
+
+- Add printf conversion casts to fix Raspberry-Pi4 compilation error
+  - Cast ssize_t to long and uint32 to unsigned long for printf.
+  - This matches the %d and %lX conversions, respectively.
+- Implement Coding Standard in CodeQL
+- See <https://github.com/nasa/tblCRCTool/pull/52> and <https://github.com/nasa/cFS/pull/270>
+
 ### Development Build: 1.2.0-rc1+dev25
 
-- Fix #43, Add Testing Tools to the Security Policy
-- Fix #36 #38 #40 #41, Check lseek return and exit/error processing updates
+- Add Testing Tools to the Security Policy
+- Check lseek return and exit/error processing updates
 - See <https://github.com/nasa/tblCRCTool/pull/89>
 
 ### Development Build: 1.2.0-rc1+dev19
