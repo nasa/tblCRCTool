@@ -31,7 +31,7 @@
 /*
  * Development Build Macro Definitions
  */
-#define CFE_TS_CRC_BUILD_NUMBER 25 /*!< @brief Number of commits since baseline */
+#define CFE_TS_CRC_BUILD_NUMBER 33 /*!< @brief Number of commits since baseline */
 #define CFE_TS_CRC_BUILD_BASELINE \
     "v1.2.0+dev" /*!< @brief Development Build: git tag that is the base for the current */
 
