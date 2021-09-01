@@ -67,6 +67,6 @@
     " cFE TS CRC calculator (tblCRCtool) \n" \
     " DEVELOPMENT BUILD \n"                  \
     " " CFE_TS_CRC_VERSION " \n"             \
-    " Last Offical Release: tblCRCtool v3.1.0" /* For full support please use official release version */
+    " Last Official Release: tblCRCtool v3.1.0" /* For full support please use official release version */
 
 #endif /* CFE_TS_CRC_VERSION_H */
