@@ -23,6 +23,7 @@ jobs:
   cpp-check:    
     name: Run cppcheck
     needs: check-for-duplicates
+    if: ${{ needs.check-for-duplicates.outputs.should_skip != 'true' }}
     runs-on: ubuntu-18.04
     timeout-minutes: 15
 
