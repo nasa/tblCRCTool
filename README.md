@@ -9,6 +9,12 @@ This lab application is a ground utility to generate binary table CRCs for cFS. 
 
 ## Version Notes
 
+### Development Build: 1.3.0-rc4+dev2
+
+- Set baseline for cFS-Caelum-rc4: v1.3.0-rc4
+- Update mission rev to use 0xFF for development version
+- See <https://github.com/nasa/cfs/pull/390>
+
 ### Development Build: 1.2.0-rc1+dev33
 
 - Add printf conversion casts to fix Raspberry-Pi4 compilation error
