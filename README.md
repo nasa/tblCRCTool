@@ -9,13 +9,18 @@ This lab application is a ground utility to generate binary table CRCs for cFS. 
 
 ## Version Notes
 
-### Development Build: 1.3.0-rc4+dev2
+### Development Build: v1.3.0-rc4+dev7
+
+- Remove explicit filename doxygen comments
+- See <https://github.com/nasa/cFS/pull/432>
+
+### Development Build: v1.3.0-rc4+dev2
 
 - Set baseline for cFS-Caelum-rc4: v1.3.0-rc4
 - Update mission rev to use 0xFF for development version
 - See <https://github.com/nasa/cfs/pull/390>
 
-### Development Build: 1.2.0-rc1+dev33
+### Development Build: v1.2.0-rc1+dev33
 
 - Add printf conversion casts to fix Raspberry-Pi4 compilation error
   - Cast ssize_t to long and uint32 to unsigned long for printf.
@@ -23,26 +28,26 @@ This lab application is a ground utility to generate binary table CRCs for cFS. 
 - Implement Coding Standard in CodeQL
 - See <https://github.com/nasa/tblCRCTool/pull/52> and <https://github.com/nasa/cFS/pull/270>
 
-### Development Build: 1.2.0-rc1+dev25
+### Development Build: v1.2.0-rc1+dev25
 
 - Add Testing Tools to the Security Policy
 - Check lseek return and exit/error processing updates
 - See <https://github.com/nasa/tblCRCTool/pull/89>
 
-### Development Build: 1.2.0-rc1+dev19
+### Development Build: v1.2.0-rc1+dev19
 
 - Changes CLI "help" option to use two dashes: `--help`
 - Adds static analysis and format check to continuous integration workflow. Adds workflow status badges to ReadMe.
 - Adds CodeQL Analysis to continuous integration workflow.
 - See <https://github.com/nasa/tblCRCTool/pull/35>
 
-### Development Build: 1.2.0-rc1+dev12
+### Development Build: v1.2.0-rc1+dev12
 
 - Documentation: Add `Security.md` with instructions on reporting vulnerabilities
 - Removes unimplemented CRC cases to eliminate static analysis warnings
 - See <https://github.com/nasa/tblCRCTool/pull/29>
 
-### Development Build: 1.2.0-rc1+dev3
+### Development Build: v1.2.0-rc1+dev3
 
 - Use `sizeof()` instead of a hard coded value for the table file header size to keep this tool in sync if the size of the cFE file or table header should ever change.
 - Update version baseline to v1.2.0-rc1
