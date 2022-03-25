@@ -9,6 +9,12 @@ This lab application is a ground utility to generate binary table CRCs for cFS. 
 
 ## Version Notes
 
+### Development Build: v1.3.0-rc4+dev14
+
+- Update Copyright Headers
+- Standardize version.h 
+- See <https://github.com/nasa/osal/pull/67> and <https://github.com/nasa/cFS/445>
+
 ### Development Build: v1.3.0-rc4+dev7
 
 - Remove explicit filename doxygen comments
