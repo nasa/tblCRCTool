@@ -96,7 +96,7 @@ uint32 CalculateCRC(void *DataPtr, uint32 DataLength, uint32 InputCRC)
         Crc   = ((Crc >> 8) & 0x00FF) ^ CrcTable[Index];
     }
 
-    return (Crc);
+    return Crc;
 }
 
 int main(int argc, char **argv)
@@ -163,5 +163,5 @@ int main(int argc, char **argv)
         exit(1);
     }
 
-    return (0);
+    return 0;
 }

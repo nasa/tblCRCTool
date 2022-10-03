@@ -9,6 +9,10 @@ This lab application is a ground utility to generate binary table CRCs for cFS. 
 
 ## Version Notes
 
+### Development Build: v1.3.0-rc4+dev18
+- https://github.com/nasa/tblCRCTool/pull/70
+- See <https://github.com/nasa/tblCRCTool/pull/70>
+
 ### Development Build: v1.3.0-rc4+dev14
 
 - Update Copyright Headers
