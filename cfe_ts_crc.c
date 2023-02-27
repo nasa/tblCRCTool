@@ -114,7 +114,7 @@ int main(int argc, char **argv)
     {
         printf("%s\n", CFE_TS_CRC_VERSION_STRING);
         printf("\nUsage: cfe_ts_crc [filename]\n");
-        exit(1);
+        exit(EXIT_FAILURE);
     }
     /* Set to skip the header (116 bytes) */
     skipSize = sizeof(CFE_FS_Header_t) + sizeof(CFE_TBL_File_Hdr_t);
@@ -125,7 +125,7 @@ int main(int argc, char **argv)
     {
         printf("\ncfe_ts_crc error: can't open input file!\n");
         perror(argv[1]);
-        exit(1);
+        exit(EXIT_FAILURE);
     }
     /* seek past the number of bytes requested */
     offsetReturn = lseek(fd, skipSize, SEEK_SET);
@@ -133,7 +133,7 @@ int main(int argc, char **argv)
     {
         printf("\ncfe_ts_crc error: lseek failed!\n");
         printf("%s\n", strerror(errno));
-        exit(1);
+        exit(EXIT_FAILURE);
     }
 
     /* read the input file 100 bytes at a time */
@@ -144,7 +144,7 @@ int main(int argc, char **argv)
         {
             printf("\ncfe_ts_crc error: file read failed!\n");
             printf("%s\n", strerror(errno));
-            exit(1);
+            exit(EXIT_FAILURE);
         }
         fileCRC = CalculateCRC(buffer, readSize, fileCRC);
         fileSize += readSize;
@@ -160,7 +160,7 @@ int main(int argc, char **argv)
     {
         printf("\nerror: Cannot close file!\n");
         printf("%s\n", strerror(errno));
-        exit(1);
+        exit(EXIT_FAILURE);
     }
 
     return 0;
