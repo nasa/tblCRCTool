@@ -1,6 +1,10 @@
 # Changelog
 
-## Development Build: v1.3.0+rc4+dev24
+## Develop,ent Build: v1.3.0-rc4+dev28
+- Replace exit(1) with preferred macro EXIT_FAILURE
+- See <https://github.com/nasa/tblCRCTool/pull/77>
+
+## Development Build: v1.3.0-rc4+dev24
 - Create CHANGELOG.md
 - See <https://github.com/nasa/tblCRCTool/pull/73>
 
