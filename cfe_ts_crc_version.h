@@ -29,7 +29,7 @@
 /*
  * Development Build Macro Definitions
  */
-#define CFE_TS_CRC_BUILD_NUMBER    28 /*!< @brief Number of commits since baseline */
+#define CFE_TS_CRC_BUILD_NUMBER    2 /*!< @brief Number of commits since baseline */
 #define CFE_TS_CRC_BUILD_BASELINE  "equuleus-rc1" /*!< @brief Development Build: git tag that is the base for the current */
 #define CFE_TS_CRC_BUILD_DEV_CYCLE "equuleus-rc2" /**< @brief Development: Release name for current development cycle */
 #define CFE_TS_CRC_BUILD_CODENAME  "Equuleus" /**< @brief: Development: Code name for the current build */
