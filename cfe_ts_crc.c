@@ -115,8 +115,10 @@ int main(int argc, char **argv)
     /* check for valid input */
     if ((argc != 2) || (strncmp(argv[1], "--help", 100) == 0))
     {
-        CFE_Config_GetVersionString(VersionString, CFE_TS_CRC_CFG_MAX_VERSION_STR_LEN, "tblCRCTool",
-            CFE_TS_CRC_VERSION, CFE_TS_CRC_BUILD_CODENAME, CFE_TS_CRC_LAST_OFFICIAL);
+        snprintf(VersionString, CFE_TS_CRC_CFG_MAX_VERSION_STR_LEN,
+        "%s %s %s (Codename %s), Last Official Release: %s %s)",
+        "tblCRCTool", CFE_TS_CRC_REVISION == 0 ? "Development Build" : "Release",
+        CFE_TS_CRC_VERSION, CFE_TS_CRC_BUILD_CODENAME, "tblCRCTool", CFE_TS_CRC_LAST_OFFICIAL);
         printf("%s\n", VersionString);
         printf("\nUsage: cfe_ts_crc [filename]\n");
         exit(EXIT_FAILURE);
