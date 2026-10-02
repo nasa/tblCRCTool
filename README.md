@@ -5,11 +5,11 @@
 
 This repository contains NASA's Table CRC Generator Tool (tblCRCTool), which is a framework component of the Core Flight System.
 
-This lab application is a ground utility to generate binary table CRCs for cFS. It is intended to be located in the `tools/tblCRCTool` subdirectory of a cFS Mission Tree.  The Core Flight System is bundled at https://github.com/nasa/cFS (which includes this tool as a submodule), which includes build and execution instructions.
+**The tblCRCTool is a ground utility.** This lab application is a ground utility to generate binary table CRCs for cFS. It is intended to be located in the `tools/tblCRCTool` subdirectory of a cFS Mission Tree.  A demonstration bundle of the Core Flight System is available at <https://github.com/nasa/cFS>, which includes this tool as a submodule and includes build and execution instructions.
 
 ## Known issues
 
-This ground utility was developed for a specific mission/configuration, and may not be applicable for general use.
+This ground utility was developed for a specific mission/configuration, and may not be applicable for general use. See all [open issues](https://github.com/nasa/tblCRCTool/issues). 
 
 ## Getting Help
 
