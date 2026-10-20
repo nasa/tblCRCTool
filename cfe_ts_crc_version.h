@@ -29,17 +29,16 @@
 /*
  * Development Build Macro Definitions
  */
-#define CFE_TS_CRC_BUILD_NUMBER    1        /*!< @brief Number of commits since baseline */
-#define CFE_TS_CRC_BUILD_BASELINE  "v7.0.1" /*!< @brief Development Build: git tag that is the base for the current */
-#define CFE_TS_CRC_BUILD_DEV_CYCLE "v7.0.1" /**< @brief Development: Release name for current development cycle */
-#define CFE_TS_CRC_BUILD_CODENAME  "Draco"  /**< @brief: Development: Code name for the current build */
+#define CFE_TS_CRC_BUILD_NUMBER   1 /*!< @brief Number of commits since baseline */
+#define CFE_TS_CRC_BUILD_BASELINE "v7.0.2"
+#define CFE_TS_CRC_BUILD_CODENAME "Draco" /**< @brief: Development: Code name for the current build */
 
 /*
  * Version Macros, see \ref cfsversions for definitions.
  */
-#define CFE_TS_CRC_MAJOR_VERSION 7 /*!< @brief Major version number */
-#define CFE_TS_CRC_MINOR_VERSION 0 /*!< @brief Minor version number */
-#define CFE_TS_CRC_REVISION      1 /*!< @brief Revision version number. Value of 0 indicates a development version.*/
+#define CFE_TS_CRC_MAJOR_VERSION 7
+#define CFE_TS_CRC_MINOR_VERSION 0
+#define CFE_TS_CRC_REVISION      2
 
 /**
  * @brief Last official release.
